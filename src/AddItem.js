@@ -28,7 +28,7 @@ const openoder = (item,userExists,guestexists,setpage,setorder,setordermode,newG
     return alert("dobole click on item to order it",item);
 }
 
-const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartIteam,newGuest)=>{
+const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartIteam,newGuest,api)=>{
     if(userExists)
         {
             fetch(`${api}/add_cartItem/${itemid}/${userid}`,{method:"POST",
@@ -68,7 +68,7 @@ const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartI
         }
         return ;
  }
-const removeit = (itemid,userid,userExists,guestexists,guestid,setCheak,CartIteam,setCartIteam)=>{
+const removeit = (itemid,userid,userExists,guestexists,guestid,setCheak,CartIteam,setCartIteam,api)=>{
     
     if(userExists)
     {
@@ -98,7 +98,7 @@ const removeit = (itemid,userid,userExists,guestexists,guestid,setCheak,CartItea
 
 ;
 
-export default function AddItem({ item, userid ,userExists, guestexists, guestid,CartIteam,setpage,setorder,setCartIteam,setordermode,newGuest}) {
+export default function AddItem({ item, userid ,userExists, guestexists, guestid,CartIteam,setpage,setorder,setCartIteam,setordermode,newGuest,api}) {
     const [cheak, setCheak] = useState(false)
     const bstyle=cheak?{fontSize:"35px",backgroundColor:"transparent"}:{fontSize:"35px",backgroundColor:"transparent"}
     useEffect(() => {
@@ -106,11 +106,11 @@ export default function AddItem({ item, userid ,userExists, guestexists, guestid
     }, [CartIteam, item.id]); 
     const ordermode=1;
     return (
-        <div className="product" key={item.id} onDoubleClick={()=>openoder(item,userExists,guestexists,setpage,setorder,setordermode,newGuest)}> {/* Assuming each item has a unique id */}
+        <div className="product" key={item.id} onDoubleClick={()=>openoder(item,userExists,guestexists,setpage,setorder,setordermode,newGuest,api)}> {/* Assuming each item has a unique id */}
             <img src={item.img} alt={item.img} />
             <div className='nameblock'><h3>{item.name}</h3><p>₹{item.price}</p></div>
             <h6>{item.details}</h6>
-            <div className='namebutton'><button className='cartbutton' style={bstyle} onClick={()=>{cheak?removeit(item.id,userid,userExists,guestexists,guestid,setCheak,CartIteam,setCartIteam):addtocart(item.id,userid,userExists,guestexists,guestid,setCheak,setCartIteam,newGuest)}}>{cheak?<FaCartArrowDown
+            <div className='namebutton'><button className='cartbutton' style={bstyle} onClick={()=>{cheak?removeit(item.id,userid,userExists,guestexists,guestid,setCheak,CartIteam,setCartIteam,api):addtocart(item.id,userid,userExists,guestexists,guestid,setCheak,setCartIteam,newGuest,api)}}>{cheak?<FaCartArrowDown
             color='#1eff00ff'
              />:<FaCartPlus
             color='white'

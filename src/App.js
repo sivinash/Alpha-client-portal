@@ -24,6 +24,7 @@ function App() {
   const [userid, setUserid] = useState("");
   const [userExists, setUserExists] = useState(false);
   const [data, setData] = useState([]);
+  const api ="https://alpha-admin-portal-production.up.railway.app";
 
   useEffect(() => {
     const ex = JSON.parse(localStorage.getItem("guestexist"));
@@ -40,7 +41,7 @@ function App() {
   
   useEffect(() => {
     console.log("useeffect2.................2");
-    fetch("/get_items", { method: "GET" }) // Corrected 'methods' to 'method'
+    fetch(`${api}/get_items`, { method: "GET" }) // Corrected 'methods' to 'method'
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -63,7 +64,7 @@ function App() {
     const ex1 = JSON.parse(localStorage.getItem("guestexist"));
     if (token != null) {
       console.log("kkkkkkkkkk")
-      fetch(`get_cartItem/${token.userid}`,{method:"GET",
+      fetch(`${api}/get_cartItem/${token.userid}`,{method:"GET",
             headers: {
             'Content-Type': 'application/json',}
         }).
@@ -110,7 +111,7 @@ function App() {
     e.preventDefault();
     const form = document.getElementById("loginForm");
     const formData = new FormData(form); // Convert FormData to object for logging
-    fetch("/login", {
+    fetch(`${api}/login`, {
       method: "POST",
       body: formData,
     })
@@ -151,7 +152,7 @@ function App() {
       setBody(change);
     }
     else if (change === 4) {
-      fetch(`/get_order/${userExists ? userid : guestid}`)
+      fetch(`${api}/get_order/${userExists ? userid : guestid}`)
         .then((response) => response.json())
         .then((data) => {
           setorder(data.orders);
@@ -164,7 +165,7 @@ function App() {
       
     }
     else if (change === 5) {
-      fetch(`/get_order_history/${userExists ? userid : guestid}`)
+      fetch(`${api}/get_order_history/${userExists ? userid : guestid}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data.order)
@@ -212,6 +213,7 @@ function App() {
                 info={info}
                 userExists={userExists}
                 togglePassword={togglePassword}
+                api={api}
               />
             </div>
           ) : body === 2 ? (
@@ -227,6 +229,7 @@ function App() {
                 changeBody={changeBody}
                 showFlashMessage={showFlashMessage}
                 togglePassword={togglePassword}
+                api={api}
               />
             </div>
           ) : body === 3 ? (
@@ -238,6 +241,7 @@ function App() {
                 setpage={setpage}
                 setorder={setorder}
                 setordermode={setordermode}
+                api={api}
               />
               <Table
                 userExists={userExists}
@@ -259,6 +263,7 @@ function App() {
                 setCartIteam={setCartIteam}
                 setordermode={setordermode}
                 newGuest={newGuest}
+                api={api}
               />
             </div>
           ) : body === 4 ? (
@@ -291,6 +296,7 @@ function App() {
                   setordermode={setordermode}
                   changeBody={changeBody}
                   setpage={setpage}
+                  api={api}
                 />
               </>
             ))):(<div style={{width:"100%",color:"white",fontSize:'24px',alignContent:"center",fontStyle:"italic",textAlign:"center",paddingTop:"100px"}}><h1>Searched Order Not Found</h1></div>)
@@ -326,6 +332,7 @@ function App() {
                   setordermode={setordermode}
                   changeBody={changeBody}
                   setpage={setpage}
+                  api={api}
                 />
               </>
             ))):(<div style={{width:"100%",color:"white",fontSize:'24px',alignContent:"center",fontStyle:"italic",textAlign:"center",paddingTop:"100px"}}><h1>Searched Order Not Found History</h1></div>)
@@ -352,6 +359,7 @@ function App() {
                 setCartIteam={setCartIteam}
                 setordermode={setordermode}
                 newGuest={newGuest}
+                api={api}
               />
             </>
           ) : body === 7 ?(
@@ -375,6 +383,7 @@ function App() {
                 setCartIteam={setCartIteam}
                 setordermode={setordermode}
                 newGuest={newGuest}
+                api={api}
               />
             </>
           ) : (
@@ -399,6 +408,7 @@ function App() {
                 setCartIteam={setCartIteam}
                 setordermode={setordermode}
                 newGuest={newGuest}
+                api={api}
               />
             </>
           )}
@@ -415,6 +425,7 @@ function App() {
           setordermode={setordermode}
           changeBody={changeBody}
           setpage={setpage}
+          api={api}
         />
       )}
     </section>

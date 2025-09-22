@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import{FaEyeSlash, FaEye} from 'react-icons/fa';
-export default function Register({ changeBody ,showFlashMessage,togglePassword}) {
+export default function Register({ changeBody ,showFlashMessage,togglePassword,api}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password1, setPassword1] = useState('');
@@ -21,7 +21,7 @@ export default function Register({ changeBody ,showFlashMessage,togglePassword})
             address: address
         };
         try {
-            const response = await fetch("/add_user", {
+            const response = await fetch(`${api}/add_user`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import { FaCartPlus, FaCartArrowDown } from 'react-icons/fa';
 import React, { useState ,useEffect} from 'react';
-const openoder = (item,userExists,guestexists,setpage,setorder,setordermode,newGuest) => {
+const openoder = (item,userExists,guestexists,setpage,setorder,setordermode,newGuest,api) => {
     
     if(userExists|guestexists){
         const order1 = [item]
@@ -12,7 +12,7 @@ const openoder = (item,userExists,guestexists,setpage,setorder,setordermode,newG
     else if(!guestexists){
         if(window.confirm("You are not logged in. Do you want to create a guest user")) 
         {
-            fetch("/guest", {
+            fetch(`${api}/guest`, {
                 method: 'POST'}).then(response => response.json())
                 .then(data=> {console.log("Guest user created with ID:", data.guest_id);
                 localStorage.setItem("guestid", data.guest_id);
@@ -31,7 +31,7 @@ const openoder = (item,userExists,guestexists,setpage,setorder,setordermode,newG
 const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartIteam,newGuest)=>{
     if(userExists)
         {
-            fetch(`add_cartItem/${itemid}/${userid}`,{method:"POST",
+            fetch(`${api}/add_cartItem/${itemid}/${userid}`,{method:"POST",
                 headers: {'Content-Type': 'application/json',}
             }).
     then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
@@ -43,7 +43,7 @@ const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartI
     else if(!guestexists){
         if(window.confirm("You are not logged in. Do you want to create a guest user")) 
         {
-            fetch("/guest", {
+            fetch(`${api}/guest`, {
                 method: 'POST'}).then(response => response.json())
                 .then(data=> {console.log("Guest user created with ID:", data.guest_id);
                 localStorage.setItem("guestid", data.guest_id);
@@ -72,7 +72,7 @@ const removeit = (itemid,userid,userExists,guestexists,guestid,setCheak,CartItea
     
     if(userExists)
     {
-        fetch(`add_cartItem/${itemid}/${userid}`,{method:"GET",
+        fetch(`${api}/add_cartItem/${itemid}/${userid}`,{method:"GET",
             headers: {
             'Content-Type': 'application/json',}
         }).

@@ -1,5 +1,5 @@
 import AddItem from "./AddItem";
-function cbody({data,userid,userExists,guestexists,guestid,CartIteam,setpage,setorder,setCartIteam,setordermode,newGuest}) {
+function cbody({data,userid,userExists,guestexists,guestid,CartIteam,setpage,setorder,setCartIteam,setordermode,newGuest,api}) {
     const fulliteams = data.length;
     const col = 4;
     const rows = Math.ceil(fulliteams / col);
@@ -18,6 +18,7 @@ function cbody({data,userid,userExists,guestexists,guestid,CartIteam,setpage,set
                     setCartIteam={setCartIteam}
                     setordermode={setordermode}
                     newGuest={newGuest}
+                    api={api}
                     />
                 </td>
             );
@@ -28,7 +29,7 @@ function cbody({data,userid,userExists,guestexists,guestid,CartIteam,setpage,set
     return bodyRows;
 }
 
-function Table({userExists,data,userid,guestexists,guestid,CartIteam,infomation,setpage,setorder,setCartIteam,setordermode,newGuest}) {
+function Table({userExists,data,userid,guestexists,guestid,CartIteam,infomation,setpage,setorder,setCartIteam,setordermode,newGuest,api}) {
     const fulliteams = data.length;
     const col = fulliteams < 4? fulliteams : 4; 
     return (
@@ -49,6 +50,7 @@ function Table({userExists,data,userid,guestexists,guestid,CartIteam,infomation,
                             setCartIteam={setCartIteam}
                             setordermode={setordermode}
                             newGuest={newGuest}
+                            api={api}
                             />
                         </th>
                     ))}
@@ -56,7 +58,7 @@ function Table({userExists,data,userid,guestexists,guestid,CartIteam,infomation,
             </thead>
             {fulliteams > 4 && (
                 <tbody>
-                    {cbody({data,userid,userExists,guestexists,guestid,CartIteam,setpage,setorder,setCartIteam,setordermode,newGuest})}
+                    {cbody({data,userid,userExists,guestexists,guestid,CartIteam,setpage,setorder,setCartIteam,setordermode,newGuest,api})}
                 </tbody>
             )}
         </table>):

@@ -3,7 +3,7 @@ import { FaSpinner,FaCheckCircle, FaEyeSlash, FaEye, FaLocationArrow, FaRupeeSig
 import Addrow from "./Addrow";
 
 
-export default function Order({ userExists, userid, guestexists, guestid, order ,ordermode, setordermode, changeBody,setpage}) {
+export default function Order({ userExists, userid, guestexists, guestid, order ,ordermode, setordermode, changeBody,setpage,api}) {
     const length = ordermode? 1: order.length;
     console.log("orderhhhhhhhhh", order);
     const orderssss=0
@@ -27,7 +27,7 @@ export default function Order({ userExists, userid, guestexists, guestid, order 
         formData.forEach((value, key) => {
             data[key] = value;
         });
-        fetch('/add_order', {method: 'POST', headers: {
+        fetch(`${api}/add_order`, {method: 'POST', headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)}).

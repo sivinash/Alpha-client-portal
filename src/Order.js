@@ -6,16 +6,13 @@ import Addrow from "./Addrow";
 export default function Order({ userExists, userid, guestexists, guestid, order ,ordermode, setordermode, changeBody,setpage,api}) {
     const length = ordermode? 1: order.length;
     console.log("orderhhhhhhhhh", order);
-    const orderssss=0
+    //const orderssss=0
     const [newadd,setnewadd]=useState(true);
     const [orderImage, setOrderImage] = useState([]);
     const [orderList, setOrderList] = useState([]);
     const [total, setTotal] = useState(0);
     const [show, setShow] = useState(false);
     const [addres,setaddress] = useState({});
-    function newuser(){
-        
-    }
     const handleOrder = (e) => {
         e.preventDefault(); 
         const button=document.getElementById('oderconform')
@@ -30,9 +27,9 @@ export default function Order({ userExists, userid, guestexists, guestid, order 
         fetch(`${api}/add_order`, {method: 'POST', headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)}).
-        then(response => {return response.json();}).
-        then(data =>alert("order placed success order id:"+data.id),changeBody(0)).catch(error => {console.error('Errorfff:', error);});
+            body: JSON.stringify(data)})
+            .then(response => {return response.json();})
+            .then(data =>alert("order placed success order id:"+data.id),changeBody(0)).catch(error => {console.error('Errorfff:', error);});
     }
     useEffect(() => {
         if(ordermode){
@@ -60,7 +57,7 @@ export default function Order({ userExists, userid, guestexists, guestid, order 
                 setnewadd(false);
             }
         }
-    }, [order]);
+    }, [order,ordermode]);
 
     useEffect(() => {
        if(ordermode){
@@ -70,12 +67,12 @@ export default function Order({ userExists, userid, guestexists, guestid, order 
          const totalPrice = orderList.reduce((acc, element) => acc + (parseInt(element.price, 10) * element.quantity), 0);
          setTotal(totalPrice);
        }
-    }, [orderList]);
+    }, [orderList,ordermode,order.total]);
     function changeimage(i){
         const slider = document.querySelector('.slider');
-        const slides = document.querySelectorAll('.slide');
+       // const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll(".dot");
-        const slidecount = slides.length;
+        //const slidecount = slides.length;
         slider.style.transform=`translateX(-${i*100}%)`;
         dots.forEach(dot=>dot.classList.remove('active'));
         dots[i].classList.add('active');

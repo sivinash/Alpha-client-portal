@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 function Login({ changeBody,username,userid,info ,userExists,togglePassword,api}) {
     return (
         <div className="login-container">
@@ -16,10 +15,9 @@ function Login({ changeBody,username,userid,info ,userExists,togglePassword,api}
                 </div>
                 <div className="form-group1" >
                     <button  className="login-btn10" type="submit">Login</button>
-                    <a href="#" className='alink'  onClick={() => changeBody(2)}>Sign Up</a>
+                    <button  className='alink'  onClick={() => changeBody(2)}>Sign Up</button>
                 </div>
-                <div id="flash-messages">
-                    
+                <div id="flash-messages">                    
                 </div>
             </form>
         </div>

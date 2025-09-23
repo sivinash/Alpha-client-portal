@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 function Ad() {
-    const images = [
+    const images = useMemo(() => [
         'specialoffbaner1.avif',
         'specialoffbaner3.avif',
         'specialoffbaner4.avif',
         'specialoffbaner7.avif',
         'specialoffbaner8.avif',
         'specialoffbaner9.avif'
-    ];
-    
+    ], []);
+
     const [imagee, setImagee] = useState(images[0]);
-    const [currentImage, setCurrentImage] = useState(0);
 
     useEffect(() => {
+        let currentIndex = 0;
         const interval = setInterval(() => {
-            
-            setCurrentImage(prevImage => {
-                const nextImage = (prevImage + 1) % images.length;
-                setImagee(images[nextImage]);
-                return nextImage;
-            });
+            currentIndex = (currentIndex + 1) % images.length;
+            setImagee(images[currentIndex]);
         }, 2000);
-
-        // Cleanup interval on component unmount
         return () => clearInterval(interval);
     }, [images]);
+
 
     return (
         <div className="banner-container">
@@ -35,3 +30,4 @@ function Ad() {
 }
 
 export default Ad;
+

@@ -103,7 +103,7 @@ export default function AddItem({ item, userid ,userExists, guestexists, guestid
     useEffect(() => {
         setCheak(CartIteam.includes(item.id));
     }, [CartIteam, item.id]); 
-    const ordermode=1;
+    //const ordermode=1;
     const cloudimg = item.img.startsWith('http') ? item.img : `${api}/${item.img}`;
     return (
         <div className="product" key={item.id} onDoubleClick={()=>openoder(item,userExists,guestexists,setpage,setorder,setordermode,newGuest,api)}> {/* Assuming each item has a unique id */}

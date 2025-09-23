@@ -67,8 +67,7 @@ function App() {
       fetch(`${api}/get_cartItem/${token.userid}`,{method:"GET",
             headers: {
             'Content-Type': 'application/json',}
-        }).
-        then(response => response.json()).then(data => {console.log("cart items cart:", data.cartitem);
+        }).then(response => response.json()).then(data => {console.log("cart items cart:", data.cartitem);
         localStorage.setItem("cartitems", data.cartitem);
         }).catch(error => console.error('Error:', error));
     } else if (ex1) {
@@ -277,7 +276,7 @@ function App() {
                 const date=String(order.date)
                 const price=String(order.total)
                 return id.includes(searchTerm)||price.includes(searchTerm)||date.includes(searchTerm);
-              }))!=0?((order.filter(order=>{
+              }))!==0?((order.filter(order=>{
                 const searchTerm = (search).toLowerCase().replace(/\s+/g, "");
                 const id = (order.id).toLowerCase().replace(/\s+/g, "");
                 const date=String(order.date)
@@ -313,7 +312,7 @@ function App() {
                 const date=String(order.date)
                 const price=String(order.total)
                 return id.includes(searchTerm)||price.includes(searchTerm)||date.includes(searchTerm);
-              }))!=0?((order.filter(order=>{
+              }))!==0?((order.filter(order=>{
                 const searchTerm = (search).toLowerCase().replace(/\s+/g, "");
                 const id = (order.id).toLowerCase().replace(/\s+/g, "");
                 const date=String(order.date)

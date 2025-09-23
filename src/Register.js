@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import{FaEyeSlash, FaEye} from 'react-icons/fa';
 export default function Register({ changeBody ,showFlashMessage,togglePassword,api}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -89,7 +88,7 @@ export default function Register({ changeBody ,showFlashMessage,togglePassword,a
                 </div>
                 <div className="form-group1"  >
                     <button type="submit" className="login-btn10">Register</button>
-                    <a href="#" className='alink' onClick={() => changeBody(1)}>Login</a>
+                    <button className='alink' onClick={() => changeBody(1)}>Login</button>
                 </div>
             </form>
             <div id="flash-messages">

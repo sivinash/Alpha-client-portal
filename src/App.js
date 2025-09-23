@@ -10,7 +10,7 @@ import Order from "./Order";
 import Cart from "./Cart";
 
 function App() {
-  const [filter, setFilter] = useState("");
+  
   const [ordermode, setordermode] = useState(false);
   const [page, setpage] = useState(0);
   const [order, setorder] = useState([]);

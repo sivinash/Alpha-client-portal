@@ -105,9 +105,10 @@ export default function AddItem({ item, userid ,userExists, guestexists, guestid
         setCheak(CartIteam.includes(item.id));
     }, [CartIteam, item.id]); 
     const ordermode=1;
+    const cloudimg = item.img.startsWith('http') ? item.img : `${api}/${item.img}`;
     return (
         <div className="product" key={item.id} onDoubleClick={()=>openoder(item,userExists,guestexists,setpage,setorder,setordermode,newGuest,api)}> {/* Assuming each item has a unique id */}
-            <img src={item.img} alt={item.img} />
+            <img src={cloudimg} alt={item.img} />
             <div className='nameblock'><h3>{item.name}</h3><p>₹{item.price}</p></div>
             <h6>{item.details}</h6>
             <div className='namebutton'><button className='cartbutton' style={bstyle} onClick={()=>{cheak?removeit(item.id,userid,userExists,guestexists,guestid,setCheak,CartIteam,setCartIteam,api):addtocart(item.id,userid,userExists,guestexists,guestid,setCheak,setCartIteam,newGuest,api)}}>{cheak?<FaCartArrowDown

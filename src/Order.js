@@ -149,7 +149,7 @@ export default function Order({ userExists, userid, guestexists, guestid, order 
                 <div className="slider">
                     {orderImage.map((element, index) => (
                         <div key={index} className="slide" onClick={()=>{ changeimage(index)}}>
-                            <img src={element.img} alt={element.img} />
+                            <img src={`https://alpha-admin-portal-production.up.railway.app/${element.img}`} alt={element.img} />
                             <div className="info">
                                 <span >{element.name}</span>      
                                 <span >₹{element.price}</span>

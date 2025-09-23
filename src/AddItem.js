@@ -34,12 +34,12 @@ const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartI
             fetch(`${api}/add_cartItem/${itemid}/${userid}`,{method:"POST",
                 headers: {'Content-Type': 'application/json',}
             }).
-    then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
-        setCartIteam(data.cartitem);
-        localStorage.setItem("cartitems", data.cartitem);
-        setCheak(true);
-    }).catch(error => console.error('Error:', error));
-    }
+            then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
+                setCartIteam(data.cartitem);
+                localStorage.setItem("cartitems", data.cartitem);
+                setCheak(true);
+            }).catch(error => console.error('Error:', error));
+        }
     else if(!guestexists){
         if(window.confirm("You are not logged in. Do you want to create a guest user")) 
         {

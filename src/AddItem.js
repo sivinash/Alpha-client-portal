@@ -33,8 +33,7 @@ const addtocart= (itemid,userid,userExists,guestexists,guestid,setCheak,setCartI
         {
             fetch(`${api}/add_cartItem/${itemid}/${userid}`,{method:"POST",
                 headers: {'Content-Type': 'application/json',}
-            }).
-            then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
+            }).then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
                 setCartIteam(data.cartitem);
                 localStorage.setItem("cartitems", data.cartitem);
                 setCheak(true);
@@ -75,8 +74,8 @@ const removeit = (itemid,userid,userExists,guestexists,guestid,setCheak,CartItea
         fetch(`${api}/add_cartItem/${itemid}/${userid}`,{method:"GET",
             headers: {
             'Content-Type': 'application/json',}
-        }).
-        then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
+        })
+        .then(response => response.json()).then(data => {console.log("Item added to cart:", data.cartitem);
         setCartIteam(data.cartitem);
         localStorage.setItem("cartitems", data.cartitem);
         setCheak(false);}).catch(error => console.error('Error:', error));
